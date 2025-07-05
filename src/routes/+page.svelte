@@ -15,6 +15,10 @@
 		document.addEventListener('keydown', (e) => {
 			if (e.key === 'Shift') {
 				shiftPressed = true;
+			} else if (e.key === ' ') {
+				e.preventDefault();
+				firstColor = generateHexaColor();
+				secondColor = generateHexaColor();
 			}
 		});
 
@@ -27,7 +31,8 @@
 
 	const generateHexaColor = () => {
 		const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-		return `#${randomColor}`;
+		const paddedColor = randomColor.padStart(6, '0');
+		return `#${paddedColor}`;
 	};
 
 	const downloadPNG = async (e) => {
@@ -104,8 +109,6 @@
 
 <main>
 	<div class="render">
-		<!-- //////// -->
-
 		<svg
 			id="logo"
 			width="686"
@@ -547,7 +550,7 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
-		height: 100vh;
+		height: 95vh;
 		gap: 20px;
 	}
 
